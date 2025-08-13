@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Sans, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
+import LanguageProvider from "@/lib/Providers/LanguageProvider";
+import { AuthProvider } from "@/lib/Providers/authProvider";
+import { CartProvider } from "@/lib/Providers/CartProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// English font
+const notoSans = Noto_Sans({
+  variable: "--font-english",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Bangla font
+const notoBengali = Noto_Sans_Bengali({
+  variable: "--font-bengali",
+  subsets: ["bengali"],
 });
 
 export const metadata: Metadata = {
@@ -25,9 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${notoSans.variable} ${notoBengali.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>
+          <AuthProvider>
+            <CartProvider>{children}</CartProvider>
+          </AuthProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
