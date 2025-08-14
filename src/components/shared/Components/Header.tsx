@@ -182,7 +182,7 @@ const Header = () => {
           ) : (
             <div className="hidden sm:flex items-center space-x-2">
               <Button asChild variant="outline" size="sm">
-                <Link href="/signup">{t("nav.register")}</Link>
+                <Link href="/register">{t("nav.register")}</Link>
               </Button>
             </div>
           )}
@@ -273,7 +273,7 @@ const Header = () => {
                   size="sm"
                   className="mt-2 w-full text-center cursor-pointer"
                 >
-                  <Link href="/signup">{t("nav.register")}</Link>
+                  <Link href="/register">{t("nav.register")}</Link>
                 </Button>
               )}
             </nav>
