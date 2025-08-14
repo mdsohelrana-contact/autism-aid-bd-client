@@ -31,10 +31,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       {badgeText && badgeIcon && (
         <div className="flex items-center justify-center gap-3 mb-6">
           <Zap className="h-6 w-6 text-accent animate-pulse" />
-          <Badge
-            variant="secondary"
-            className="bg-accent/20 text-accent-foreground font-semibold px-6 py-2 rounded-full tracking-wide text-sm sm:text-base"
-          >
+          <Badge className="bg-accent-20 text-accent-foreground font-semibold px-6 py-2 rounded-full">
             {badgeText}
           </Badge>
           <Zap className="h-6 w-6 text-accent animate-pulse" />
