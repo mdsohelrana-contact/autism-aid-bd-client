@@ -102,7 +102,7 @@ const SpecialOffer = () => {
   ];
 
   return (
-    <section className="w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <section className="w-full px-4 sm:px-6 lg:px-8 py-10 md:py-12 lg:py-16">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <SectionHeader

@@ -1,10 +1,15 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { SectionHeader } from "@/components/shared/Components/SectionHeader";
 import { useLanguage } from "@/lib/Providers/LanguageProvider";
 import { Brain, MessageCircle, Activity, Puzzle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
 const CategorySection = () => {
   const { t } = useLanguage();
 
@@ -12,81 +17,101 @@ const CategorySection = () => {
     {
       icon: Brain,
       title: t("products.sensory"),
-      description: "Sensory integration tools, weighted blankets, fidget toys",
-      image: "/placeholder.svg?height=300&width=400",
+      description:
+        "Enhance development with sensory integration tools, weighted blankets, and fidget toys.",
+      image: "/images/categories/sensory.jpg",
       href: "/products?category=sensory",
-      color: "bg-blue-100 text-blue-600",
+      color: "bg-gradient-to-tr from-blue-200 to-blue-400 text-blue-700",
     },
     {
       icon: MessageCircle,
       title: t("products.communication"),
-      description: "AAC devices, picture cards, communication boards",
-      image: "/placeholder.svg?height=300&width=400",
+      description:
+        "Boost communication skills with AAC devices, picture cards, and interactive boards.",
+      image: "/images/categories/communication.jpg",
       href: "/products?category=communication",
-      color: "bg-green-100 text-green-600",
+      color: "bg-gradient-to-tr from-green-200 to-green-400 text-green-700",
     },
     {
       icon: Activity,
       title: t("products.motor"),
-      description: "Fine motor tools, gross motor equipment, balance aids",
-      image: "/placeholder.svg?height=300&width=400",
+      description:
+        "Support motor skills with fine and gross motor tools, balance aids, and therapy equipment.",
+      image: "/images/categories/motor.jpg",
       href: "/products?category=motor",
-      color: "bg-yellow-100 text-yellow-600",
+      color: "bg-gradient-to-tr from-yellow-200 to-yellow-400 text-yellow-700",
     },
     {
       icon: Puzzle,
       title: t("products.therapy"),
-      description: "Professional therapy equipment, assessment tools",
-      image: "/placeholder.svg?height=300&width=400",
+      description:
+        "Professional therapy equipment, assessment tools, and resources for specialists.",
+      image: "/images/categories/therapy.jpg",
       href: "/products?category=therapy",
-      color: "bg-purple-100 text-purple-600",
+      color: "bg-gradient-to-tr from-purple-200 to-purple-400 text-purple-700",
     },
   ];
+
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 lg:py-16 bg-gray-50">
+      <SectionHeader
+        title="Explore Our Categories"
+        description="Discover our curated range of products to support children's development, therapy, and learning."
+      />
+
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-foreground">
-            {t("products.title")}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t("products.subtitle")}
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category, index) => (
-            <Link key={category.title} href={category.href}>
-              <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-0 shadow-md">
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <Image
-                      src={category.image || "/placeholder.svg"}
-                      alt={category.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      width={400}
-                      height={300}
-                    />
-                    <div className="absolute top-4 left-4">
-                      <div className={`p-3 rounded-full ${category.color}`}>
-                        <category.icon className="h-6 w-6" />
-                      </div>
-                    </div>
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          }}
+        >
+          {categories.map((category) => (
+            <SwiperSlide key={category.title}>
+              <Link
+                href={category.href}
+                className="group relative block overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500"
+                aria-label={`Shop ${category.title} products`}
+              >
+                <div className="relative w-full h-64 rounded-t-3xl overflow-hidden">
+                  <Image
+                    src={category.image}
+                    alt={`${category.title} products`}
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 brightness-95 group-hover:brightness-105"
+                    width={400}
+                    height={300}
+                    priority
+                  />
+                  <div
+                    className={`absolute top-5 left-5 p-4 rounded-full ${category.color} shadow-lg transition-transform duration-500 group-hover:scale-110`}
+                  >
+                    <category.icon className="h-8 w-8" />
                   </div>
+                </div>
 
-                  <div className="p-6 space-y-3">
-                    <h3 className="text-xl font-serif font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {category.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {category.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
+                <div className="bg-white p-6 -mt-16 relative z-10 rounded-2xl transition-transform duration-500 group-hover:-translate-y-6">
+                  <h3 className="text-xl md:text-2xl font-serif font-bold text-gray-900 group-hover:text-primary transition-colors">
+                    {category.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-600 mt-2 leading-relaxed">
+                    {category.description}
+                  </p>
+                  <span className="mt-4 inline-block text-primary font-semibold group-hover:underline">
+                    Shop Now →
+                  </span>
+                </div>
+              </Link>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );

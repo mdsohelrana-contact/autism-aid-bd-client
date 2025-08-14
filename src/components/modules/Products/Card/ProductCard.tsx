@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Product } from "@/components/types/product.type";
 import CartButton from "@/components/shared/Components/Buttons/CartButton";
+import Link from "next/link";
 
 export interface ProductButtons {
   onAddToCart?: (product: Product) => void;
@@ -24,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, buttons }) => {
 
   return (
     // hover:-translate-y-1 
-    <Card className="group shadow-sm transition-all duration-300 
+    <Card className="group shadow-md transition-all duration-300 
     border-0 ">
       <CardContent className="p-0">
         <div className="relative overflow-hidden rounded-t-lg">
@@ -52,11 +53,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, buttons }) => {
         <div className="p-4 space-y-3">
           <div className="space-y-1">
             {product.category && (
-              <p className="text-xs text-muted-foreground">{product.category}</p>
+              <p className="text-sm text-muted-foreground">{product.category}</p>
             )}
-            <h3 className="font-serif font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-              {product.name}
-            </h3>
+
+          <Link className="font-serif font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 " href={`/products/${product.id}`}>
+            <h2 className="hover:underline hover:decoration-blue-600 hover:text-blue-600">{product.name}</h2>
+            </Link>
           </div>
 
           {product.rating !== undefined && (

@@ -21,7 +21,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 }) => {
   return (
     <motion.header
-      className={`text-center mb-16 px-4 sm:px-6 lg:px-8 ${className}`}
+      className={`text-center mb-10 px-4 md:px-6 lg:px-8 ${className}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -29,7 +29,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     >
       {/* Badge + Icons */}
       {badgeText && badgeIcon && (
-        <div className="flex items-center justify-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-3 mb-3">
           <Zap className="h-6 w-6 text-accent animate-pulse" />
           <Badge className="bg-accent-20 text-accent-foreground font-semibold px-6 py-2 rounded-full">
             {badgeText}
@@ -39,7 +39,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
 
       {/* Main Title */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground leading-tight sm:leading-tight md:leading-tight lg:leading-tight">
+      <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground leading-tight md:leading-tight  lg:leading-tight">
         {title}
       </h2>
 

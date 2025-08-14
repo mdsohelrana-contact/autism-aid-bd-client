@@ -22,7 +22,7 @@ export const CustomSection: React.FC<SectionProps> = ({
 }) => {
   return (
     <section
-      className={`relative w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 ${className}`}
+      className={`relative w-full px-4 md:px-6 lg:px-8 py-10 md:py-12 lg:py-16 ${className}`}
     >
       {/* Optional Header */}
       {(title || description || badgeText) && (
